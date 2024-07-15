@@ -17,7 +17,7 @@ jobs:
         env:
           RELEVANT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
-          curl -sL --create-dirs https://github.com/go-shortcut/json-bumper/releases/download/0.0.1/json-helper.linux.x86_64 -o ~/.local/bin/json-helper
+          curl -sL --create-dirs https://github.com/go-shortcut/json-bumper/releases/download/0.1.4/json-helper.linux.x86_64 -o ~/.local/bin/json-helper
           chmod +x "${_}"
           json-helper info.json bump patch  version
           json-helper info.json bump int    build_id
