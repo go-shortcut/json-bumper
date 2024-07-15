@@ -1,4 +1,4 @@
-package main
+package jsonhelper
 
 import (
 	"log"
@@ -11,15 +11,14 @@ const (
   "project": "test",
   "version": "1.0.0",
   "commit": "abcdef1234",
-  "date": "2020-09-30T00:00:00Z",
-  "build_id": 0
+  "date": "2020-09-30T00:00:00Z"
 }`
 	testJsonOut = `{
   "build_id": 2,
-  "commit": "abcdef1234",
+  "commit": "567890abcd",
   "date": "2020-09-30T00:00:00Z",
   "project": "test",
-  "version": "1.1.1"
+  "version": "2.1.1"
 }`
 )
 
@@ -33,16 +32,21 @@ func TestName(t *testing.T) {
 	file.WriteString(testJsonIn)
 	file.Close()
 
-	functionDoIt(file.Name(), "bump", "patch", "version")
-	functionDoIt(file.Name(), "bump", "int", "build_id")
-	functionDoIt(file.Name(), "bump", "minor", "version")
-	functionDoIt(file.Name(), "bump", "int", "build_id")
-	//functionDoIt(file.Name(), "bump", "date", "date")
-	//fmt.Printf("%+v\n", result)
+	Cli(file.Name(), "bump", "patch", "version")
+	Cli(file.Name(), "bump", "int", "build_id")
+	Cli(file.Name(), "bump", "minor", "version")
+	Cli(file.Name(), "bump", "int", "build_id")
+	Cli(file.Name(), "bump", "major", "version")
+	Cli(file.Name(), "set", "string", "commit", "567890abcd")
+
 	byteValue, _ := os.ReadFile(file.Name())
 
 	if string(byteValue) != testJsonOut {
 		t.Errorf("Got wrong content: \n %v\n", string(byteValue))
 	}
+
+	// run after test to fill coverage gaps
+	Cli(file.Name(), "bump", "date", "date")
+	Cli(file.Name(), "bump", "major", "not_existing_key")
 
 }

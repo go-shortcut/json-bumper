@@ -22,8 +22,7 @@ jobs:
           json-helper info.json bump patch  version
           json-helper info.json bump int    build_id
           json-helper info.json bump date   date
-          # not implemented yet
-          # json-helper info.json set  string commit ${RELEVANT_SHA:0:7}
+          json-helper info.json set  string commit ${RELEVANT_SHA:0:7}
           cat info.json
 
       - name: commit changes

@@ -20,3 +20,8 @@ fmt:
 
 clean:
 	rm -rf bin/*
+
+cov:
+	go test -coverprofile=cov.out ./pkg/...
+	go tool cover -html=cov.out
+	unlink cov.out
