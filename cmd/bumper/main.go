@@ -16,5 +16,5 @@ func main() {
 	if len(os.Args) < 5 {
 		log.Fatal(banner)
 	}
-	jsonhelper.Cli(os.Args...)
+	jsonhelper.Cli(os.Args[1:]...)
 }
