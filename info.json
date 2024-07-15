@@ -1,7 +1,7 @@
 {
-  "project": "bumper",
-  "version": "0.0.1",
+  "build_id": 1,
   "commit": "abcdef1234",
-  "date": "2020-09-30T00:00:00Z",
-  "build_id": 0
+  "date": "2024-07-15T22:07:19Z",
+  "project": "bumper",
+  "version": "0.0.2"
 }
