@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 )
 
 func PrintToStdErr(msg string) {
@@ -13,7 +14,7 @@ func PrintToStdErr(msg string) {
 }
 
 func PrintToStdErrFatal(anything interface{}) {
-	println(anything)
+	fmt.Fprintln(os.Stderr, anything)
 }
 
 func PrintToStdOut(anything interface{}) {
@@ -40,5 +41,5 @@ func captureStdout(f func()) string {
 
 	var buf bytes.Buffer
 	io.Copy(&buf, r)
-	return buf.String()
+	return strings.TrimSuffix(buf.String(), "\n")
 }

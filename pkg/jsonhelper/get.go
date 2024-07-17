@@ -2,6 +2,7 @@ package jsonhelper
 
 import (
 	"encoding/json"
+	"github.com/blang/semver/v4"
 	"os"
 )
 
@@ -21,6 +22,25 @@ func JsonGet(fpath string, args ...string) {
 	case "int":
 		PrintToStdErr("'int' does not make sense here.")
 	case "patch", "minor", "major":
-		PrintToStdErr("'path,minor,major' are not implemented yet.")
+		value, ok := result[key]
+		if !ok {
+			PrintToStdErr(key + " key not found.")
+		}
+		if v, ok := value.(string); ok {
+			version, err := semver.Make(v)
+			if err != nil {
+				PrintToStdErrFatal(err)
+				return
+			}
+			if option == "patch" {
+				PrintToStdOut(version.Patch)
+			} else if option == "minor" {
+				PrintToStdOut(version.Minor)
+
+			} else {
+				// if option == "major"
+				PrintToStdOut(version.Major)
+			}
+		}
 	}
 }

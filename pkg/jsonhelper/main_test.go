@@ -9,7 +9,7 @@ import (
 const (
 	testJsonIn = `{
   "project": "test",
-  "version": "1.0.0",
+  "version": "1.0.9",
   "commit": "abcdef1234",
   "date": "2020-09-30T00:00:00Z"
 }`
@@ -18,7 +18,7 @@ const (
   "commit": "567890abcd",
   "date": "2020-09-30T00:00:00Z",
   "project": "test",
-  "version": "2.1.1"
+  "version": "2.1.10"
 }`
 )
 
